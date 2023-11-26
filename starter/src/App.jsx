@@ -10,8 +10,16 @@ import {
 } from "./index";
 
 const router = createBrowserRouter([
-  { path: "/", element: <HomeLayout /> },
-  { path: "/about", element: <About /> },
+  {
+    path: "/",
+    element: <HomeLayout />,
+    children: [
+      { path: "landing", element: <Landing /> },
+      { path: "cocktail", element: <Cocktail /> },
+      { path: "newsletter", element: <NewsLetter /> },
+      { path: "about", element: <About /> },
+    ],
+  },
 ]);
 
 const App = () => {
