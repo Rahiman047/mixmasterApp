@@ -1,9 +1,24 @@
-import { Form } from "react-router-dom";
+import { Form, redirect } from "react-router-dom";
+import { toast } from "react-toastify";
+import axios from "axios";
+
+const newsletterUrl = "https://jsonplaceholder.typicode.com/posts";
 
 export const action = async ({ request }) => {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
   console.log(data);
+
+  const response = await axios.post(newsletterUrl, data, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  console.log(response);
+  if (response !== 400) {
+    toast.success("User Subscribed");
+  }
+  return redirect("/");
 };
 
 const NewsLetter = () => {
