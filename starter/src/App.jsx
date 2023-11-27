@@ -3,6 +3,8 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { About, Food, Error, HomeLayout, Landing, NewsLetter } from "./index";
 
 import { loader as LandingLoader } from "./Landing";
+import { loader as SingleMealLoader } from "./Food";
+import { action as newLetterAction } from "./NewsLetter";
 
 const router = createBrowserRouter([
   {
@@ -15,8 +17,8 @@ const router = createBrowserRouter([
         element: <Landing />,
         loader: LandingLoader,
       },
-      { path: "food", element: <Food /> },
-      { path: "newsletter", element: <NewsLetter /> },
+      { path: "food/:id", element: <Food />, loader: SingleMealLoader },
+      { path: "newsletter", element: <NewsLetter />, action: newLetterAction },
       { path: "about", element: <About /> },
     ],
   },
